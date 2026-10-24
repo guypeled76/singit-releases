@@ -2,6 +2,8 @@
 
 Signed builds of the **SingIt** Chrome extension. Extension id: `chnemnegpcbkemaaekhkchgigbgdcaik`.
 
+**Install guide: https://guypeled76.github.io/singit-releases/** (always shows the latest release)
+
 Chrome on macOS and Windows only installs extensions from outside the Chrome Web Store through a policy. Clicking the `.crx` in a release won't work. Install with the policy for your OS below. Chrome then downloads SingIt from this repo and **keeps it updated automatically** from the latest release.
 
 ## Install
