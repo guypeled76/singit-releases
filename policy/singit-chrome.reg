@@ -1,0 +1,4 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist]
+"1"="chnemnegpcbkemaaekhkchgigbgdcaik;https://github.com/guypeled76/singit-releases/releases/latest/download/update.xml"
