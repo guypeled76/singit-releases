@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install SingIt</title>
+<meta name="description" content="Install the SingIt Chrome extension on Mac, Windows, Linux or Chromebook.">
+<link rel="icon" href="icon128.png">
+<style>
+  :root {
+    --bg: #f6f7f5;
+    --surface: #ffffff;
+    --text: #17191a;
+    --muted: #5d6468;
+    --border: #dfe3e1;
+    --accent: #1a9e4b;
+    --accent-text: #ffffff;
+    --code-bg: #eef1ef;
+    --warn-bg: #fff6e0;
+    --warn-border: #f0d48a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121414;
+      --surface: #1b1e1f;
+      --text: #ecefee;
+      --muted: #a2aaad;
+      --border: #2e3335;
+      --accent: #1db954;
+      --accent-text: #0b1a10;
+      --code-bg: #24292b;
+      --warn-bg: #2b2516;
+      --warn-border: #6b5a26;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+  header { display: flex; gap: 16px; align-items: center; margin-bottom: 8px; }
+  header img { width: 56px; height: 56px; border-radius: 12px; }
+  h1 { font-size: 30px; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: 20px; margin: 40px 0 12px; }
+  h3 { font-size: 16px; margin: 20px 0 8px; }
+  p { margin: 8px 0; }
+  a { color: var(--accent); }
+  .lead { color: var(--muted); margin: 0 0 24px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .latest { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+  .version { font-size: 22px; font-weight: 650; }
+  .meta { color: var(--muted); font-size: 14px; }
+  .button {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+  }
+  .button.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .tabs button {
+    font: inherit;
+    font-size: 15px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
+  .panel[hidden] { display: none; }
+  .panel h3:first-child { margin-top: 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 6px 0; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; }
+  code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+  pre { background: var(--code-bg); padding: 12px 14px; border-radius: 8px; overflow-x: auto; }
+  pre code { background: none; padding: 0; }
+  .note { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 15px; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--code-bg); color: var(--muted); margin-left: 6px; vertical-align: middle; }
+  .history { list-style: none; padding: 0; margin: 0; }
+  .history li { border-top: 1px solid var(--border); padding: 12px 0; margin: 0; }
+  .history li:first-child { border-top: none; padding-top: 0; }
+  .history .notes { color: var(--muted); font-size: 14px; white-space: pre-line; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon128.png" alt="">
+    <h1>Install SingIt</h1>
+  </header>
+  <p class="lead">A Chrome extension that collects chords and lyrics from Tab4U, Ultimate Guitar and Shironet into your own song library.</p>
+
+  <section class="card latest" aria-live="polite">
+    <div>
+      <div class="version" id="latest-version">Latest release</div>
+      <div class="meta" id="latest-meta">Checking GitHub for the newest version…</div>
+    </div>
+    <div>
+      <a class="button secondary" id="latest-link" href="https://github.com/guypeled76/singit-releases/releases/latest">Release page</a>
+    </div>
+  </section>
+
+  <h2>Install</h2>
+  <p>Pick your computer. Chrome on Mac, Windows and Linux installs SingIt through a small settings file and then <strong>keeps it updated automatically</strong>.</p>
+
+  <div class="tabs" role="tablist" aria-label="Operating system">
+    <button role="tab" id="tab-mac" aria-controls="panel-mac" data-os="mac">Mac</button>
+    <button role="tab" id="tab-windows" aria-controls="panel-windows" data-os="windows">Windows</button>
+    <button role="tab" id="tab-linux" aria-controls="panel-linux" data-os="linux">Linux</button>
+    <button role="tab" id="tab-chromeos" aria-controls="panel-chromeos" data-os="chromeos">Chromebook</button>
+  </div>
+
+  <section class="card panel" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac">
+    <h3>Mac <span class="badge">updates automatically</span></h3>
+    <ol>
+      <li><a href="policy/singit-chrome.mobileconfig" download>Download the SingIt profile</a> and double-click it in your Downloads folder.</li>
+      <li>Open <strong>System Settings → General → Device Management</strong> (called <strong>Profiles</strong> on older macOS).</li>
+      <li>Select <strong>SingIt Chrome extension</strong>, click <strong>Install</strong>, and enter your Mac password.</li>
+      <li>Quit Chrome completely (<code>⌘Q</code>) and open it again.</li>
+    </ol>
+  </section>
+
+  <section class="card panel" role="tabpanel" id="panel-windows" aria-labelledby="tab-windows" hidden>
+    <h3>Windows <span class="badge">updates automatically</span></h3>
+    <ol>
+      <li><a href="policy/singit-chrome.reg" download>Download the SingIt registry file</a>.</li>
+      <li>Double-click it and accept the prompts. This needs an administrator account.</li>
+      <li>Close all Chrome windows and open Chrome again.</li>
+    </ol>
+  </section>
+
+  <section class="card panel" role="tabpanel" id="panel-linux" aria-labelledby="tab-linux" hidden>
+    <h3>Linux <span class="badge">updates automatically</span></h3>
+    <p>Run in a terminal, then restart Chrome:</p>
+<pre><code>sudo mkdir -p /etc/opt/chrome/policies/managed
+sudo curl -L -o /etc/opt/chrome/policies/managed/singit-chrome.json \
+  https://guypeled76.github.io/singit-releases/policy/singit-chrome-linux.json</code></pre>
+  </section>
+
+  <section class="card panel" role="tabpanel" id="panel-chromeos" aria-labelledby="tab-chromeos" hidden>
+    <h3>Chromebook <span class="badge">update by hand</span></h3>
+    <p>Personal Chromebooks can't use the automatic installer, so SingIt is added from a folder. This uses only a switch on Chrome's extensions page; it doesn't change any system settings.</p>
+    <ol>
+      <li><a id="chromeos-zip" href="https://github.com/guypeled76/singit-releases/releases/latest">Download the latest SingIt zip</a>.</li>
+      <li>In the <strong>Files</strong> app, open the zip, select everything inside, and copy it into a new folder, for example <code>My files/SingIt</code>. Keep this folder: Chrome runs SingIt from it.</li>
+      <li>Open <code>chrome://extensions</code> (type it in the address bar) and turn on <strong>Developer mode</strong> in the top right.</li>
+      <li>Click <strong>Load unpacked</strong> and choose the <code>SingIt</code> folder.</li>
+      <li>Pin SingIt: click the puzzle-piece icon next to the address bar, then the pin next to SingIt.</li>
+    </ol>
+    <h3>Updating</h3>
+    <p>When this page shows a newer version than <code>chrome://extensions</code> does, download the new zip, replace the contents of the <code>SingIt</code> folder, and click the reload arrow on the SingIt card.</p>
+    <div class="note">If <strong>Load unpacked</strong> is greyed out, the Chromebook account is supervised (Family Link) or managed by a school or company, and extensions can't be added this way.</div>
+  </section>
+
+  <h2>Check it worked</h2>
+  <ul>
+    <li><code>chrome://extensions</code> lists <strong>SingIt</strong>. On Mac, Windows and Linux it can take a minute after Chrome starts and is marked as installed by your organization.</li>
+    <li>Mac, Windows, Linux: <code>chrome://policy</code> lists <strong>ExtensionInstallForcelist</strong> with status OK. Click <strong>Reload policies</strong> if SingIt hasn't appeared yet.</li>
+  </ul>
+
+  <h2>Using SingIt</h2>
+  <ol>
+    <li>Click the SingIt icon in the toolbar to open your library, then sign in with Google.</li>
+    <li>Open a song on <a href="https://www.tab4u.com">Tab4U</a>, <a href="https://www.ultimate-guitar.com">Ultimate Guitar</a> or <a href="https://shironet.mako.co.il">Shironet</a>. The SingIt icon shows a green <strong>+</strong>.</li>
+    <li>Click the icon to import the song into your library.</li>
+  </ol>
+  <div class="note">SingIt is invite-only. If it says your account doesn't have access, ask the person who shared SingIt with you to add your Google account.</div>
+
+  <h2>Uninstall</h2>
+  <ul>
+    <li><strong>Mac:</strong> remove the <strong>SingIt Chrome extension</strong> profile in System Settings → General → Device Management.</li>
+    <li><strong>Windows:</strong> in the Registry Editor, delete the value under <code>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist</code> that mentions <code>chnemnegpcbkemaaekhkchgigbgdcaik</code>.</li>
+    <li><strong>Linux:</strong> <code>sudo rm /etc/opt/chrome/policies/managed/singit-chrome.json</code></li>
+    <li><strong>Chromebook:</strong> click <strong>Remove</strong> on the SingIt card in <code>chrome://extensions</code>.</li>
+  </ul>
+  <p>Restart Chrome afterwards.</p>
+
+  <h2>Release history</h2>
+  <section class="card">
+    <ul class="history" id="history"><li class="meta">Loading releases…</li></ul>
+  </section>
+
+  <footer>
+    Extension id <code>chnemnegpcbkemaaekhkchgigbgdcaik</code> · <a href="https://github.com/guypeled76/singit-releases">Releases on GitHub</a>
+  </footer>
+</main>
+
+<script>
+  const REPO = "guypeled76/singit-releases";
+
+  // Tabs: open the visitor's system by default.
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  function selectTab(os) {
+    for (const tab of tabs) {
+      const selected = tab.dataset.os === os;
+      tab.setAttribute("aria-selected", String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      document.getElementById(tab.getAttribute("aria-controls")).hidden = !selected;
+    }
+  }
+  function detectOs() {
+    const ua = navigator.userAgent;
+    if (/CrOS/.test(ua)) return "chromeos";
+    if (/Windows/.test(ua)) return "windows";
+    if (/Macintosh|Mac OS X/.test(ua)) return "mac";
+    if (/Linux/.test(ua)) return "linux";
+    return "mac";
+  }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => selectTab(tab.dataset.os));
+    tab.addEventListener("keydown", (e) => {
+      const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!step) return;
+      const next = tabs[(i + step + tabs.length) % tabs.length];
+      selectTab(next.dataset.os);
+      next.focus();
+    });
+  });
+  selectTab(detectOs());
+
+  // Latest release and history, read live from GitHub on every visit.
+  const formatDate = (iso) =>
+    new Date(iso).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+
+  fetch(`https://api.github.com/repos/${REPO}/releases?per_page=20`)
+    .then((res) => (res.ok ? res.json() : Promise.reject(new Error(`HTTP ${res.status}`))))
+    .then((all) => {
+      const releases = all.filter((r) => !r.draft && !r.prerelease);
+      const latest = releases[0];
+      if (!latest) throw new Error("no releases");
+
+      const version = latest.tag_name.replace(/^v/, "");
+      document.getElementById("latest-version").textContent = `SingIt ${version}`;
+      document.getElementById("latest-meta").textContent = `Released ${formatDate(latest.published_at)}`;
+      document.getElementById("latest-link").href = latest.html_url;
+
+      const zip = latest.assets.find((a) => a.name.endsWith(".zip"));
+      if (zip) {
+        const link = document.getElementById("chromeos-zip");
+        link.href = zip.browser_download_url;
+        link.textContent = `Download SingIt ${version} (zip)`;
+      }
+
+      const history = document.getElementById("history");
+      history.replaceChildren(
+        ...releases.map((r) => {
+          const li = document.createElement("li");
+          const title = document.createElement("a");
+          title.href = r.html_url;
+          title.textContent = r.name || r.tag_name;
+          const date = document.createElement("span");
+          date.className = "meta";
+          date.textContent = ` · ${formatDate(r.published_at)}`;
+          li.append(title, date);
+          if (r.body) {
+            const notes = document.createElement("div");
+            notes.className = "notes";
+            notes.textContent = r.body;
+            li.append(notes);
+          }
+          return li;
+        })
+      );
+    })
+    .catch(() => {
+      document.getElementById("latest-meta").textContent = "Couldn't reach GitHub. Open the release page for the newest version.";
+      document.getElementById("history").innerHTML =
+        '<li class="meta">Couldn\'t load releases. <a href="https://github.com/guypeled76/singit-releases/releases">See them on GitHub</a>.</li>';
+    });
+</script>
+</body>
+</html>
